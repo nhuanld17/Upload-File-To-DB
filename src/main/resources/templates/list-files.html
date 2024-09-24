@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>BezKoder - Thymeleaf File Upload example</title>
+    <title>Thymeleaf File Upload example</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,7 +35,7 @@
                 <!--<td><a th:href="@{${file.url}}">Download</a></td>-->
                 <td><a th:href="@{|${file.url}|}">Download</a></td>
                 <td>
-                    <a th:href="@{'/files/delete/' + ${file.id}}" data-file-name="[[${file.name}]]" id="btnDelete"
+                    <a th:href="@{'/files/delete/' + ${file.id}}" th:fileName="${file.id}" id="btnDelete"
                        title="Delete this file" class="fa-regular fa-trash-can icon-dark btn-delete">
                     </a>
                 </td>
@@ -76,7 +76,7 @@
             e.preventDefault();
             const link = $(this);
 
-            const fileName = link.data("file-name");
+            const fileName = link.attr("fileName")
             $("#yesBtn").attr("href", link.attr("href"));
             $("#confirmText").html("Do you want to delete the File: \<strong\>" + fileName + "\<\/strong\>?");
             $("#confirmModal").modal();
